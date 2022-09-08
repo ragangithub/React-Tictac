@@ -1,0 +1,141 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  cursor: pointer;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+.buttons:nth-child(1),
+.buttons:nth-child(2),
+.buttons:nth-child(3) {
+  border-top: none;
+}
+.buttons:nth-child(1),
+.buttons:nth-child(4),
+.buttons:nth-child(7) {
+  border-left: none;
+}
+.buttons:nth-child(3),
+.buttons:nth-child(6),
+.buttons:nth-child(9) {
+  border-right: none;
+}
+.buttons:nth-child(7),
+.buttons:nth-child(8),
+.buttons:nth-child(9) {
+  border-bottom: none;
+}
+.buttons {
+  position: relative;
+}
+.buttons.x::after,
+.buttons.x::before {
+  content: "";
+  height: 90%;
+  width: 10px;
+  background-color: red;
+  display: block;
+  position: absolute;
+  cursor: pointer;
+}
+.buttons.x::before {
+  transform: rotate(45deg);
+}
+.buttons.x::after {
+  transform: rotate(-45deg);
+}
+.buttons.circle::after,
+.buttons.circle::before {
+  content: "";
+  height: 90%;
+  width: 90%;
+  background-color: red;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  cursor: pointer;
+}
+.buttons.circle::after {
+  height: 70%;
+  width: 70%;
+  background-color: white;
+}
+
+.board.x .buttons:not(.x):not(.circle):hover::before,
+.board.x .buttons:not(.x):not(.circle):hover::after {
+  content: "";
+  height: 90%;
+  width: 10px;
+  background-color: red;
+  display: block;
+  position: absolute;
+  cursor: pointer;
+}
+.board.x .buttons:not(.x):not(.circle):hover::before {
+  transform: rotate(45deg);
+}
+.board.x .buttons:not(.x):not(.circle):hover::after {
+  transform: rotate(-45deg);
+}
+
+.board.circle .buttons:not(.x):not(.circle):hover::before,
+.board.circle .buttons:not(.x):not(.circle):hover::after {
+  content: "";
+  height: 90%;
+  width: 90%;
+  background-color: red;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  cursor: pointer;
+}
+.board.circle .buttons:not(.x):not(.circle):hover::after {
+  height: 70%;
+  width: 70%;
+  background-color: white;
+}
+.winner {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1;
+}
+.winner .wins,
+.winner .restart {
+  color: white;
+  font-size: 50px;
+}
+.winner .restart {
+  padding: 5px 10px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+.winner.hide {
+  display: none;
+}
